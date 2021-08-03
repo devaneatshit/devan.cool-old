@@ -9,7 +9,6 @@ setInterval(function(){
 "deva",
 "dev",
 "de",
-"d",
 ]
 
     if(i===titles.length) {
