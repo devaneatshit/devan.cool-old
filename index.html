@@ -75,6 +75,29 @@
           <h1 id="text02">devan &lt;3</h1>
           <p id="text01">cool internet person</p>
 		  <p id="text01">click for music &lt;3</p>
+		          <div id = "presence">
+            <h2> discord presence thing </h2>
+		<p id="status"></p>
+		<p id="music"></p>
+        <script>
+            (async () => {
+                const res = await fetch("https://api.lanyard.rest/v1/users/435206857276260353")
+                const req = await res.json()
+                let dstatus = document.getElementById("status")
+		
+                dstatus.innerHTML = `Discord Status: ${req.data.discord_status}`
+		if (req.data.listening_to_spotify) {
+			let spstatus = document.getElementById("music")
+			spstatus.innerHTML = `Currently listening to ${req.data.spotify.song} by ${req.data.spotify.artist}<br>Link: <a href="https://open.spotify.com/track/${req.data.spotify.track_id}" target="_blank">click here</a>`
+		}
+		for (let elem of req.data.activities) {
+			if (elem.name === "Headset" && !req.data.listening_to_spotify) {
+				let mstatus = document.getElementById("music")
+				mstatus.innerHTML = `Currently listening to ${elem.state} by ${elem.details} on <a href="https://headsetapp.co" target="_blank">Headset</a>`
+			}
+		}
+            })()
+	    </script>
           <ul id="icons01" class="icons">
             <li>
               <a class="n01" href="https://discord.gg/jqv5REAeMy"
